@@ -1,0 +1,33 @@
+name: 'GitHub workflow Telegram notification'
+description: 'Get notification to Telegram chat about GitHub Action workflow status '
+author: 'yamaks2306'
+
+inputs:
+  chat_id:
+    description: 'Telegram chat id'
+    required: true
+  token:
+    description: 'Token for Telegram bot'
+    required: true
+  status:
+    description: 'Job status'
+    required: false
+    default: ${{ job.status }}
+  commit_message:
+    description: 'Commit message'
+    required: false
+    default: ${{ github.event.head_commit.message }}
+  docker_tags:
+    description: 'For example, steps.docker_meta.outputs.tags'
+    required: false
+  include_commit_info:
+    description: "If true, include commit information to message. Default - true"
+    required: false
+    default: 'true'
+  message:
+    description: "Custom message"
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

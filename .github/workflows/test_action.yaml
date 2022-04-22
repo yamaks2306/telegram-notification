@@ -1,0 +1,24 @@
+name: Send message
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  send:
+    name: Checkout and send message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Send message
+        uses: yamaks2306/telegram-notification@main
+        if: always()
+        with:
+          chat_id: ${{ secrets.TG_CHAT_ID }}
+          token: ${{ secrets.TG_TOKEN }}
+          
