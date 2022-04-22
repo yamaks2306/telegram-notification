@@ -1,2 +1,2 @@
 #!/bin/bash
-python send_message.py
+python /app/send_message.py
