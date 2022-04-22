@@ -65,7 +65,8 @@ def send_message():
     parameters = {
     'chat_id': chat_id,
     'text': message,
-    'parse_mode': 'HTML'
+    'parse_mode': 'HTML',
+    'disable_web_page_preview': True
     }
     
     request = requests.get(link, params = parameters)
