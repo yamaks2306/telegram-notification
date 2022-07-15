@@ -10,28 +10,28 @@ class Message:
     def __build_message(self):
         '''Building message from different parts'''
         message = f'''{constant.ICON[self.envs.status]} {self.envs.status}: <b>{self.envs.github_workflow}</b>\n
-          Repository: <b>{self.envs.github_repository}</b>'''
+        Repository: <b>{self.envs.github_repository}</b>'''
         
         version = self.envs.get_version()
         if version is not None:
             message = f'''{message}
-          Version: <b>{version}</b>'''
+        Version: <b>{version}</b>'''
         
-        if self.envs.docker_tags is not None:
+        if self.envs.docker_tags != "":
             message = f'''{message}
-          Docker image tags: <b>{self.envs.docker_tags}</b>'''
+        Docker image tags: <b>{self.envs.docker_tags}</b>'''
         
         if self.envs.include_commit_info == "true":
             message = f'''{message}
-          Author: <b>{self.envs.github_actor}</b>
-          Commit message: <b>{self.envs.commit}</b>
-          <a href="{self.envs.get_commit_link()}">See changes</a>'''
+        Author: <b>{self.envs.github_actor}</b>
+        Commit message: <b>{self.envs.commit}</b>
+        <a href="{self.envs.get_commit_link()}">See changes</a>'''
                 
         return message
 
     def send_message(self):
         '''Sending message to telegram chat'''
-        message = self.__build_message() if self.envs.custom_message is None else self.envs.custom_message
+        message = self.__build_message() if self.envs.custom_message == "" else self.envs.custom_message
         parameters = {
         'chat_id': self.envs.chat_id,
         'text': message,
