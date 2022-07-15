@@ -17,7 +17,7 @@ class Message:
             message = f'''{message}
           Version: <b>{version}</b>'''
         
-        if self.envs.docker_tags is not None:
+        if self.envs.docker_tags != "":
             message = f'''{message}
           Docker image tags: <b>{self.envs.docker_tags}</b>'''
         
@@ -31,7 +31,7 @@ class Message:
 
     def send_message(self):
         '''Sending message to telegram chat'''
-        message = self.__build_message() if self.envs.custom_message is None else self.envs.custom_message
+        message = self.__build_message() if self.envs.custom_message == "" else self.envs.custom_message
         parameters = {
         'chat_id': self.envs.chat_id,
         'text': message,
