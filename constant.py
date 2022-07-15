@@ -1,0 +1,6 @@
+ICON = {
+    "failure":   "🔴",
+	"cancelled": "⚪",
+	"success":   "🟢",
+}
+
