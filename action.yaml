@@ -29,8 +29,24 @@ inputs:
     required: false
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+
+    - shell: bash
+      run: python3 ${{ github.action_path }}/main.py
+      env:
+        CHAT_ID: ${{ inputs.chat_id }}
+        TOKEN: ${{ inputs.token }}
+        STATUS: ${{ inputs.status }}
+        COMMIT_MESSAGE: ${{ inputs.commit_message }}
+        DOCKER_TAGS: ${{ inputs.docker_tags }}
+        INCLUDE_COMMIT_INFO: ${{ inputs.include_commit_info }}
+        MESSAGE: ${{ inputs.message }}
+        WORKFLOW: ${{ github.workflow }}
+        REPOSITORY: ${{ github.repository }}
+        SHA: ${{ github.sha }}
+        ACTOR: ${{ github.actor }}
+        TAG: ${{ github.ref }}
 
 branding:
   icon: 'send'
