@@ -2,23 +2,23 @@ import os
 from message import Message
 from environments import Environment
 
-chat_id = os.getenv('INPUT_CHAT_ID')
-if chat_id == "":
+chat_id = os.getenv('CHAT_ID')
+if chat_id == "" or chat_id is None:
     raise SystemExit('Variable chat_id is required. Exit.')
-token = os.getenv('INPUT_TOKEN')
-if token == "":
-    raise SystemExit('Variable chat_id is required. Exit.')
-status = os.getenv('INPUT_STATUS')
-commit = os.getenv('INPUT_COMMIT_MESSAGE')
-include_commit_info = os.getenv('INPUT_INCLUDE_COMMIT_INFO')
-docker_tags = os.getenv('INPUT_DOCKER_TAGS')
-custom_message = os.getenv('INPUT_MESSAGE')
+token = os.getenv('TOKEN')
+if token == "" or token is None:
+    raise SystemExit('Variable token is required. Exit.')
+status = os.getenv('STATUS')
+commit = os.getenv('COMMIT_MESSAGE')
+include_commit_info = os.getenv('INCLUDE_COMMIT_INFO')
+docker_tags = os.getenv('DOCKER_TAGS')
+custom_message = os.getenv('MESSAGE')
 #GitHub environment variables
-github_workflow = os.getenv('GITHUB_WORKFLOW')
-github_repository = os.getenv('GITHUB_REPOSITORY')
-github_sha = os.getenv('GITHUB_SHA')
-github_actor = os.getenv('GITHUB_ACTOR')
-tag = os.getenv('GITHUB_REF')
+github_workflow = os.getenv('WORKFLOW')
+github_repository = os.getenv('REPOSITORY')
+github_sha = os.getenv('SHA')
+github_actor = os.getenv('ACTOR')
+tag = os.getenv('TAG')
 
 envs = Environment(
     chat_id,
